@@ -1,4 +1,4 @@
-package com.openclassrooms.mynews.activities;
+package com.openclassrooms.mynews;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
