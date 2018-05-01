@@ -21,3 +21,10 @@ android:
 
   before_install:
   - chmod +x gradlew
+
+  install:
+  - echo yes | sdkmanager "tools"
+  - echo yes | sdkmanager "platforms;android-${API}"
+  - echo yes | sdkmanager "extras;android;m2repository"
+  - echo yes | sdkmanager "build-tools;28.0.0-rc1;
+  - echo yes | sdkmanager "extras;google;m2repository"
