@@ -15,5 +15,5 @@ android:
   - build-tools-${ANDROID_BUILD_TOOLS}
   - extra
 
-# install:
-  # - echo yes | sdkmanager "build-tools;28.0.0"
+install:
+  - echo yes | sdkmanager "build-tools;28.0.0-rc1"
