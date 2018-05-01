@@ -1,4 +1,4 @@
-package com.openclassrooms.mynews.controller.Utils;
+package com.openclassrooms.mynews.Utils;
 
 import android.util.Log;
 
