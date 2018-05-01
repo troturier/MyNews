@@ -4,9 +4,9 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
-class NetworkAsyncTask extends android.os.AsyncTask<String, Void, String> {
+public class NetworkAsyncTask extends android.os.AsyncTask<String, Void, String> {
 
-    interface Listeners {
+    public interface Listeners {
         void onPreExecute();
         void doInBackground();
         void onPostExecute(String success);
