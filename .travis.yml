@@ -23,7 +23,7 @@ install:
   - echo yes | sdkmanager "build-tools;28.0.0-rc1"
 
 before_script:
-  - echo no | android create avd --force -n test -t "Google Inc.:Google APIs:"${ANDROID_API} --abi ${ANDROID_ABI}
+  - echo no | android create avd --force -n test -t android-${ANDROID_API} --abi ${ANDROID_ABI}
   - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
