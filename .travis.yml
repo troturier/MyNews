@@ -27,6 +27,3 @@ install:
 before_script:
   - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-skin -no-audio -no-window &
-
-script:
-  - ./wait_for_emulator
