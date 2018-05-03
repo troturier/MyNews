@@ -9,12 +9,11 @@ import android.widget.Toast;
 import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.Models.TopStories;
 import com.openclassrooms.mynews.R;
-import com.openclassrooms.mynews.Utils.NetworkAsyncTask;
 import com.openclassrooms.mynews.Utils.TopStoriesCalls;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NetworkAsyncTask.Listeners, TopStoriesCalls.Callbacks  {
+public class MainActivity extends AppCompatActivity implements TopStoriesCalls.Callbacks  {
 
     private final static String TAG = MainActivity.class.getSimpleName();
     private TextView textView;
@@ -51,27 +50,6 @@ public class MainActivity extends AppCompatActivity implements NetworkAsyncTask.
     }
 
     // ------------------
-    //  HTTP REQUEST
-    // ------------------
-
-    private void executeHttpRequest(){
-        new NetworkAsyncTask(this).execute("https://api.nytimes.com/svc/topstories/v2/home.json?api_key=514f85e678024ec3a52dd5cb986fdc63");
-    }
-
-    @Override
-    public void onPreExecute() {
-        this.updateUIWhenStartingHTTPRequest();
-    }
-
-    @Override
-    public void doInBackground() { }
-
-    @Override
-    public void onPostExecute(String json) {
-        this.updateUIWhenStopingHTTPRequest(json);
-    }
-
-    // ------------------
     //  UPDATE UI
     // ------------------
 
@@ -87,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NetworkAsyncTask.
     private void updateUIWithListOfStories(List<Result> stories){
         StringBuilder stringBuilder = new StringBuilder();
         for (Result story : stories){
-            stringBuilder.append("-"+story.getTitle()+"\n");
+            stringBuilder.append("-"+story.getTitle()+"\n\n");
         }
         updateUIWhenStopingHTTPRequest(stringBuilder.toString());
     }
