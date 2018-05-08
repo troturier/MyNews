@@ -12,9 +12,9 @@ public class TopStories {
     @Expose
     private List<Result> results = null;
 
-    public List<Result> getResults() {
-        return results;
-    }
+    public List<Result> getResults() { return results; }
+
+    public Result getResult(int position){ return results.get(position);}
 
     public void setResults(List<Result> results) {
         this.results = results;

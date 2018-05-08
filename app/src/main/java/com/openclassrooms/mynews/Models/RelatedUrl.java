@@ -4,7 +4,7 @@ package com.openclassrooms.mynews.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RelatedUrl {
+class RelatedUrl {
 
     @SerializedName("suggested_link_text")
     @Expose
