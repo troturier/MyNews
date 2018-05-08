@@ -1,10 +1,12 @@
 package com.openclassrooms.mynews.Controllers.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.openclassrooms.mynews.Controllers.Fragments.MainFragment;
 import com.openclassrooms.mynews.Controllers.Fragments.SampleFragmentPagerAdapter;
@@ -55,6 +57,22 @@ public class MainActivity extends AppCompatActivity  {
 
             }
         };
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mSearch:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     // -------------------

@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controllers.Fragments.MainFragment" />
-        <activity android:name=".Controllers.Activities.WebViewActivity"></activity>
+        <activity android:name=".Controllers.Activities.WebViewActivity" />
+        <activity android:name=".Controllers.Activities.SearchActivity"></activity>
     </application>
 
 </manifest>
