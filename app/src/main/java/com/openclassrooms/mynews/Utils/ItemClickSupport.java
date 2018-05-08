@@ -5,24 +5,24 @@ import android.view.View;
 
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;
-    private OnItemClickListener mOnItemClickListener;
-    private OnItemLongClickListener mOnItemLongClickListener;
+    private OnItemClickListener myItemClickListener;
+    private OnItemLongClickListener myItemLongClickListener;
     private final int mItemID;
-    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    private final View.OnClickListener myClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (mOnItemClickListener != null) {
+            if (myItemClickListener != null) {
                 RecyclerView.ViewHolder holder = mRecyclerView.getChildViewHolder(v);
-                mOnItemClickListener.onItemClicked(mRecyclerView, holder.getAdapterPosition(), v);
+                myItemClickListener.onItemClicked(mRecyclerView, holder.getAdapterPosition(), v);
             }
         }
     };
-    private final View.OnLongClickListener mOnLongClickListener = new View.OnLongClickListener() {
+    private final View.OnLongClickListener myLongClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            if (mOnItemLongClickListener != null) {
+            if (myItemLongClickListener != null) {
                 RecyclerView.ViewHolder holder = mRecyclerView.getChildViewHolder(v);
-                return mOnItemLongClickListener.onItemLongClicked(mRecyclerView, holder.getAdapterPosition(), v);
+                return myItemLongClickListener.onItemLongClicked(mRecyclerView, holder.getAdapterPosition(), v);
             }
             return false;
         }
@@ -31,11 +31,11 @@ public class ItemClickSupport {
             = new RecyclerView.OnChildAttachStateChangeListener() {
         @Override
         public void onChildViewAttachedToWindow(View view) {
-            if (mOnItemClickListener != null) {
-                view.setOnClickListener(mOnClickListener);
+            if (myItemClickListener != null) {
+                view.setOnClickListener(myClickListener);
             }
-            if (mOnItemLongClickListener != null) {
-                view.setOnLongClickListener(mOnLongClickListener);
+            if (myItemLongClickListener != null) {
+                view.setOnLongClickListener(myLongClickListener);
             }
         }
 
@@ -69,11 +69,11 @@ public class ItemClickSupport {
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        mOnItemClickListener = listener;
+        myItemClickListener = listener;
     }
 
     public ItemClickSupport setOnItemLongClickListener(OnItemLongClickListener listener) {
-        mOnItemLongClickListener = listener;
+        myItemLongClickListener = listener;
         return this;
     }
 
