@@ -1,5 +1,6 @@
 package com.openclassrooms.mynews.Controllers.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.openclassrooms.mynews.Controllers.Activities.WebViewActivity;
 import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.Models.TopStories;
 import com.openclassrooms.mynews.R;
+import com.openclassrooms.mynews.Utils.ItemClickSupport;
 import com.openclassrooms.mynews.Utils.TopStoriesStreams;
 import com.openclassrooms.mynews.Views.ResultAdapter;
 
@@ -46,6 +49,7 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
         ButterKnife.bind(this, view);
         this.configureRecyclerView();
         this.configureSwipeRefreshLayout();
+        this.configureOnClickRecyclerView();
         this.executeHttpRequestWithRetrofit();
         swipeRefreshLayout.setRefreshing(false);
         return view;
@@ -55,6 +59,20 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
     public void onDestroy() {
         super.onDestroy();
         this.disposeWhenDestroy();
+    }
+
+    // -----------------
+    // ACTION
+    // -----------------
+
+    private void configureOnClickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
+                .setOnItemClickListener((recyclerView, position, v) -> {
+                    Result result = adapter.getResult(position);
+                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                    intent.putExtra("Url", result.getUrl());
+                    startActivity(intent);
+                });
     }
 
     // -----------------
