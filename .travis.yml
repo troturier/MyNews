@@ -33,6 +33,6 @@ script:
   - ./gradlew clean
   - ./gradlew assembleDebug
   - ./gradlew assembleDebugAndroidTest
-  - adb install app/build/outputs/apk/app-debug.apk
-  - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+  - adb install app/build/outputs/apk/debug/app-debug.apk
+  - adb install app/build/outputs/apk/androidTest/app-debug-androidTest.apk
   - adb shell am instrument -w com.google.samples.apps.topeka.test/android.support.test.runner.AndroidJUnitRunner
