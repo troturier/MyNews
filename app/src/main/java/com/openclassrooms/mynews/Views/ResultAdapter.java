@@ -28,10 +28,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
     // private final TopStories results;
     private final List<Result> resultsL;
     private final RequestManager glide;
-    private List<Result> resultsL1 = new ArrayList<>();
 
     // CONSTRUCTOR
-
     public ResultAdapter (TopStories results, RequestManager glide, Listener callback) {
         this.resultsL = results.getResults();
         this.glide = glide;

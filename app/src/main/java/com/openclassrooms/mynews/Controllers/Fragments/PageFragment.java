@@ -34,6 +34,16 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        switch (getArguments().getInt(ARG_PAGE))
+        {
+            case 1: {
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                break;
+            }
+            case 2: {
+                break;
+            }
+        }
+        return rootView;
     }
 }
