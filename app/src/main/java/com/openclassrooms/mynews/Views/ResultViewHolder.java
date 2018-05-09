@@ -59,10 +59,7 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
 
         // Retrieving the thumbnail picture of the article
         List<Multimedium> images = result.getMultimedia();
-        if(result.getMultimedia().isEmpty() || result.getMultimedia() == null){
-            this.imageIv.setImageDrawable(nytimeslogo);
-        }
-        else {
+        if(!result.getMultimedia().isEmpty() || result.getMultimedia() != null){
             for(int i=0; i<images.size();i++) {
                 glide.load(images.get(0).getUrl()).into(this.imageIv);
             }
