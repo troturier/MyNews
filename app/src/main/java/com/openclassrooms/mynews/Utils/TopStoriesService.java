@@ -10,6 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 
+/**
+ * Class used to create a Retrofit request for the Top Stories API of the NY Times
+ */
 interface TopStoriesService {
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"

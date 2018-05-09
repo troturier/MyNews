@@ -4,6 +4,9 @@ package com.openclassrooms.mynews.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Model for manipulating the list of images accompanying an article
+ */
 public class Multimedium {
 
     @SerializedName("url")

@@ -12,9 +12,11 @@ import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.Models.TopStories;
 import com.openclassrooms.mynews.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for the adapter specific to the results
+ */
 public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
 
     public interface Listener {
@@ -36,10 +38,15 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
         this.callback = callback;
     }
 
+    /**
+     * Create view holder and inflating its xml layout
+     * @param parent ViewGroup
+     * @param viewType int
+     * @return ResultViewHolder
+     */
     @NonNull
     @Override
     public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_main_item, parent, false);
@@ -47,16 +54,29 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
         return new ResultViewHolder(view);
     }
 
+    /**
+     * Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
+     * @param viewHolder a ResultViewHolder
+     * @param position Integer
+     */
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder viewHolder, int position) {
         viewHolder.updateWithResult(this.resultsL.get(position), this.glide, this.callback);
     }
 
-    // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
+    /**
+     * Returns the total count of items in the list
+     * @return Results list size
+     */
     @Override
     public int getItemCount() { return this.resultsL.size();
     }
 
+    /**
+     * Returns a specific result in the results list
+     * @param position Result position
+     * @return A result
+     */
     public Result getResult(int position){
         return this.resultsL.get(position);
     }

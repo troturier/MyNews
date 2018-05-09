@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import com.openclassrooms.mynews.R;
 
+/**
+ * Class used to populate the different pages of the tabs
+ */
 public class PageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
 

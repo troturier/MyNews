@@ -12,6 +12,10 @@ import com.openclassrooms.mynews.Controllers.Fragments.MainFragment;
 import com.openclassrooms.mynews.Controllers.Fragments.SampleFragmentPagerAdapter;
 import com.openclassrooms.mynews.R;
 
+/**
+ * Class for the Main Activity
+ * Manages toolbar and MainFragment configuration
+ */
 public class MainActivity extends AppCompatActivity  {
 
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -33,13 +37,22 @@ public class MainActivity extends AppCompatActivity  {
         this.configureAndShowMainFragment();
     }
 
+    /**
+     * Inflate the menu : adds items to the action bar.
+     * @param menu Menu item
+     * @return True if succeeded
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    /**
+     * Callback interface invoked when a tab's selection state changes.
+     * @param pager ViewPager
+     * @return TabLayout.OnTabSelectedListener
+     */
     private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager pager) {
         return new TabLayout.OnTabSelectedListener() {
             @Override
@@ -59,7 +72,13 @@ public class MainActivity extends AppCompatActivity  {
         };
     }
 
-
+    /**
+     * When the user selects an item from the options menu (including action items in the app bar),
+     * the system calls the activity's onOptionsItemSelected() method.
+     * This method passes the MenuItem selected.
+     * @param item MenuItem
+     * @return Boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -79,6 +98,9 @@ public class MainActivity extends AppCompatActivity  {
     // CONFIGURATION
     // -------------------
 
+    /**
+     * Configure and show the MainFragment
+     */
     private void configureAndShowMainFragment(){
 
         MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);

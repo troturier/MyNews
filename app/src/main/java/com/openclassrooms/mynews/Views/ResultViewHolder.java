@@ -22,8 +22,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Class used to create a new result item in the UI
+ */
 public class ResultViewHolder extends RecyclerView.ViewHolder{
 
+    // FOR DESIGN
     @BindView(R.id.fragment_main_item_section) TextView sectionTv;
     @BindView(R.id.fragment_main_item_title) TextView titleTv;
     @BindView(R.id.fragment_main_item_date) TextView dateTv;
@@ -37,6 +41,12 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
         ButterKnife.bind(this, itemView);
     }
 
+    /**
+     * Update the UI with new results
+     * @param result Result object
+     * @param glide Glide object for loading images
+     * @param callback ResultAdapter.Listener
+     */
     public void updateWithResult(Result result,  RequestManager glide, ResultAdapter.Listener callback){
         // Add an arrow head to the section of the article when it has a subsection
         if(!result.getSubsection().isEmpty())
@@ -44,7 +54,7 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
         else
             this.sectionTv.setText(result.getSection());
 
-        // Parsing the updated date of the article to a new format
+        // Parsing the updated date of the article to a new format and setting it the corresponding TextView
         String dtStart = result.getUpdatedDate();
         dtStart = dtStart.replace("T"," ");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -59,9 +69,11 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
 
         // Retrieving the thumbnail picture of the article
         List<Multimedium> images = result.getMultimedia();
+        // If the article does not have any thumbnail : set a default thumbnail in the ImageView
         if(result.getMultimedia().isEmpty() || result.getMultimedia() == null){
             this.imageIv.setImageDrawable(nytimeslogo);
         }
+        // Else set the corresponding thumbnail in the ImageView
         else {
             for(int i=0; i<images.size();i++) {
                 glide.load(images.get(0).getUrl()).into(this.imageIv);

@@ -3,6 +3,9 @@ package com.openclassrooms.mynews.Utils;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * Class used when an user clicks on an article
+ */
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;
     private OnItemClickListener myItemClickListener;

@@ -8,6 +8,9 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Class used to manage the streams of the HTTP requests for the Top Stories API
+ */
 public class TopStoriesStreams {
 
     public static Observable<TopStories> streamFetchTopStories(){

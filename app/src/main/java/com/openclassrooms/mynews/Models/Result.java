@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Model used to manipulate an article object (called a result)
+ */
 public class Result {
 
     @SerializedName("section")

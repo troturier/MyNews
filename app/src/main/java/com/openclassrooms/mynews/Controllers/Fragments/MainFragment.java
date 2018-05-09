@@ -1,7 +1,6 @@
 package com.openclassrooms.mynews.Controllers.Fragments;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -66,6 +65,9 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
     // ACTION
     // -----------------
 
+    /**
+     * Load the URL of an article in the WebView activity
+     */
     private void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
                 .setOnItemClickListener((recyclerView, position, v) -> {
@@ -80,6 +82,9 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
     // CONFIGURATION
     // -----------------
 
+    /**
+     * Configure the RecyclerView by creating a new Adapter object and attaching it to the RecyclerView
+     */
     private void configureRecyclerView(){
         this.resultsL = new ArrayList<>();
         TopStories results = new TopStories();
@@ -92,6 +97,9 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    /**
+     * Will trigger a new Http request to the API when the user swipe from the top to the bottom while being at the top of the RecyclerView
+     */
     private void configureSwipeRefreshLayout(){
         swipeRefreshLayout.setOnRefreshListener(this::executeHttpRequestWithRetrofit);
     }
@@ -100,6 +108,9 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
     // HTTP (RxJAVA)
     // -------------------
 
+    /**
+     * Will execute a Http request using RxJAVA and Retrofit
+     */
     private void executeHttpRequestWithRetrofit(){
         this.disposable = TopStoriesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<TopStories>() {
             @Override
@@ -115,6 +126,9 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
         });
     }
 
+    /**
+     * Perform any final cleanup before an activity is destroyed.
+     */
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
@@ -123,6 +137,10 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
     // UPDATE UI
     // -------------------
 
+    /**
+     * Update the UI with the new values retrieved by the HTTP request
+     * @param res List of articles (Results)
+     */
     private void updateUI(List<Result> res){
         resultsL.clear();
         resultsL.addAll(res);

@@ -11,6 +11,9 @@ import com.openclassrooms.mynews.R;
 
 import java.util.Calendar;
 
+/**
+ * Activity used for article search
+ */
 public class SearchActivity extends AppCompatActivity {
 
     private EditText startDate;
@@ -22,19 +25,24 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        // Setting up the return button and the activity title displayed in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Search Articles");
 
+        // Finding the two EditText responsible for managing dates in the search activity
         startDate = findViewById(R.id.search_begin_date);
         endDate = findViewById(R.id.search_end_date);
 
+        // Setting action when the startDate EditText is focused
         startDate.setOnFocusChangeListener((v, hasFocus) -> {
             if(hasFocus) {
+                // Setting up a new Calendar object in order to retrieve the date of the day
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
+                // Will create a new DatePickerDialog object with the date of the day
                 DatePickerDialog dialog = new DatePickerDialog(
                         SearchActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -42,11 +50,13 @@ public class SearchActivity extends AppCompatActivity {
                         year,
                         month,
                         day);
+                // Set DatePickerDialog background transparent
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
 
+        // Same as setOnFocusChangeListener but this time when the EditText has already been modified
         startDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
@@ -100,6 +110,7 @@ public class SearchActivity extends AppCompatActivity {
             dialog.show();
             });
 
+        // Will update the concerned EditText with the date value chosen by the user
         dateListener = (view, year, month, dayOfMonth) -> {
             String monthS = Integer.toString(month);
             String dayS = Integer.toString(dayOfMonth);
@@ -125,6 +136,10 @@ public class SearchActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * Function required for the back button to return to the previous activity
+     * @return True if succeeded
+     */
     @Override
     public boolean onSupportNavigateUp(){
         finish();
