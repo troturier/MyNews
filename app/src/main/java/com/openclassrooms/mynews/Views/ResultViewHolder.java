@@ -1,8 +1,7 @@
 package com.openclassrooms.mynews.Views;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.StrictMode;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,11 +11,9 @@ import com.bumptech.glide.RequestManager;
 import com.openclassrooms.mynews.Models.Multimedium;
 import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.R;
+import com.openclassrooms.mynews.Utils.MyApplication;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +28,9 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
     @BindView(R.id.fragment_main_item_title) TextView titleTv;
     @BindView(R.id.fragment_main_item_date) TextView dateTv;
     @BindView(R.id.fragment_main_item_image) ImageView imageIv;
+
+    private Context context =  MyApplication.getAppContext();
+    private Drawable nytimeslogo = context.getResources().getDrawable(R.drawable.ic_nytimes_logo);
 
     ResultViewHolder(View itemView){
         super(itemView);
@@ -59,21 +59,15 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
 
         // Retrieving the thumbnail picture of the article
         List<Multimedium> images = result.getMultimedia();
-        for(int i=0; i<images.size();i++){
-            Bitmap bitmap = null;
-            try {
-                int SDK_INT = android.os.Build.VERSION.SDK_INT;
-                if (SDK_INT > 8) {
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                            .permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    bitmap = BitmapFactory.decodeStream((InputStream) new URL(images.get(1).getUrl()).getContent());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            this.imageIv.setImageBitmap(bitmap);
+        if(result.getMultimedia().isEmpty() || result.getMultimedia() == null){
+            this.imageIv.setImageDrawable(nytimeslogo);
         }
+        else {
+            for(int i=0; i<images.size();i++) {
+                glide.load(images.get(0).getUrl()).into(this.imageIv);
+            }
+        }
+
         // Setting the title of the article
         this.titleTv.setText(result.getTitle());
         WeakReference<ResultAdapter.Listener> callbackWeakRef = new WeakReference<>(callback);

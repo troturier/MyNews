@@ -82,9 +82,13 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="00bbd3" />
-                            <entry key="outputName" value="checked" />
-                            <entry key="sourceFile" value="C:\Users\thiba" />
+                            <entry key="height" value="792" />
+                            <entry key="outputName" value="ic_nytimes_logo" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="F:\Github_projects\Ressources\nytimes_logo.svg" />
+                            <entry key="width" value="612" />
                           </map>
                         </option>
                       </PersistentState>

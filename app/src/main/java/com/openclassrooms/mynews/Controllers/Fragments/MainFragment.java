@@ -1,6 +1,7 @@
 package com.openclassrooms.mynews.Controllers.Fragments;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
