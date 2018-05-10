@@ -21,10 +21,25 @@ public class MainFragmentTest {
 
     @Test
     public void fetchTopStoriesTest() throws Exception {
-        Observable<Articles> observableTopStories = NyTimesStreams.streamFetchTopStories();
+        Observable<Articles> observableArticles = NyTimesStreams.streamFetchTopStories();
         TestObserver<Articles> testObserver = new TestObserver<>();
 
-        observableTopStories.subscribeWith(testObserver)
+        observableArticles.subscribeWith(testObserver)
+                .assertNoErrors()
+                .assertNoTimeout()
+                .awaitTerminalEvent();
+
+        List<Article> articles = testObserver.values().get(0).getArticles();
+
+        assertThat("The result list is not empty", !articles.isEmpty());
+    }
+
+    @Test
+    public void fetchMostPopular() throws Exception {
+        Observable<Articles> observableArticles = NyTimesStreams.streamFetchMostPopular();
+        TestObserver<Articles> testObserver = new TestObserver<>();
+
+        observableArticles.subscribeWith(testObserver)
                 .assertNoErrors()
                 .assertNoTimeout()
                 .awaitTerminalEvent();
