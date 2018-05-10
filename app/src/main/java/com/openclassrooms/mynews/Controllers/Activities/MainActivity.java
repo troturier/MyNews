@@ -83,8 +83,14 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mSearch:
-                Intent intent = new Intent(this, SearchActivity.class);
-                startActivity(intent);
+                Intent intentSearch = new Intent(this, SearchActivity.class);
+                startActivity(intentSearch);
+                return true;
+
+            case R.id.mNotifications:
+                Intent intentNotifications = new Intent(this, NotificationsActivity.class);
+                startActivity(intentNotifications);
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
