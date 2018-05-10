@@ -68,6 +68,9 @@ public class Article {
     @SerializedName("multimedia")
     @Expose
     private List<Multimedium> multimedia = null;
+    @SerializedName("media")
+    @Expose
+    private List<Medium> media = null;
     @SerializedName("related_urls")
     @Expose
     private List<RelatedUrl> relatedUrls = null;
@@ -232,4 +235,11 @@ public class Article {
         this.relatedUrls = relatedUrls;
     }
 
+    public List<Medium> getMedia() {
+        return media;
+    }
+
+    public void setMedia(List<Medium> media) {
+        this.media = media;
+    }
 }
