@@ -20,6 +20,12 @@ interface NyTimesService {
     @GET("svc/topstories/v2/home.json")
     Observable<Articles> getTopStories();
 
+    @Headers({
+            "api_key: 514f85e678024ec3a52dd5cb986fdc63"
+    })
+    @GET("https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json")
+    Observable<Articles> getMostPopular();
+
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 
     Retrofit retrofit = new Retrofit.Builder()

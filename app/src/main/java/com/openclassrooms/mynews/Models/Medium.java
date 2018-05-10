@@ -23,7 +23,7 @@ public class Medium {
     private Integer approvedForSyndication;
     @SerializedName("media-metadata")
     @Expose
-    private List<Multimedium> mediaMetadata = null;
+    private List<Multimedium> multimedia = null;
 
     public String getType() {
         return type;
@@ -65,12 +65,12 @@ public class Medium {
         this.approvedForSyndication = approvedForSyndication;
     }
 
-    public List<Multimedium> getMediaMetadata() {
-        return mediaMetadata;
+    public List<Multimedium> getMultimedia() {
+        return multimedia;
     }
 
-    public void setMediaMetadata(List<Multimedium> mediaMetadata) {
-        this.mediaMetadata = mediaMetadata;
+    public void setMultimedia(List<Multimedium> multimedia) {
+        this.multimedia = multimedia;
     }
 
 }

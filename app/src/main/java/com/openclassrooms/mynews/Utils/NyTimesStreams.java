@@ -20,4 +20,12 @@ public class NyTimesStreams {
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10000, TimeUnit.SECONDS);
     }
+
+    public static Observable<Articles> streamFetchMostPopular(){
+        NyTimesService nyTimesService = NyTimesService.retrofit.create(NyTimesService.class);
+        return nyTimesService.getMostPopular()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10000, TimeUnit.SECONDS);
+    }
 }
