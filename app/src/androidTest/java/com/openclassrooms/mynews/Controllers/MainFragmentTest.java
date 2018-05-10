@@ -35,7 +35,7 @@ public class MainFragmentTest {
     }
 
     @Test
-    public void fetchMostPopular() throws Exception {
+    public void fetchMostPopularTest() throws Exception {
         Observable<Articles> observableArticles = NyTimesStreams.streamFetchMostPopular();
         TestObserver<Articles> testObserver = new TestObserver<>();
 
