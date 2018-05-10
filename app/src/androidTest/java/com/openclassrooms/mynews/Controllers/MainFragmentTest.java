@@ -2,9 +2,9 @@ package com.openclassrooms.mynews.Controllers;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.openclassrooms.mynews.Models.Result;
-import com.openclassrooms.mynews.Models.TopStories;
-import com.openclassrooms.mynews.Utils.TopStoriesStreams;
+import com.openclassrooms.mynews.Models.Article;
+import com.openclassrooms.mynews.Models.Articles;
+import com.openclassrooms.mynews.Utils.NyTimesStreams;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,16 +21,16 @@ public class MainFragmentTest {
 
     @Test
     public void fetchTopStoriesTest() throws Exception {
-        Observable<TopStories> observableTopStories = TopStoriesStreams.streamFetchTopStories();
-        TestObserver<TopStories> testObserver = new TestObserver<>();
+        Observable<Articles> observableTopStories = NyTimesStreams.streamFetchTopStories();
+        TestObserver<Articles> testObserver = new TestObserver<>();
 
         observableTopStories.subscribeWith(testObserver)
                 .assertNoErrors()
                 .assertNoTimeout()
                 .awaitTerminalEvent();
 
-        List<Result> results = testObserver.values().get(0).getResults();
+        List<Article> articles = testObserver.values().get(0).getArticles();
 
-        assertThat("The result list is not empty", !results.isEmpty());
+        assertThat("The result list is not empty", !articles.isEmpty());
     }
 }

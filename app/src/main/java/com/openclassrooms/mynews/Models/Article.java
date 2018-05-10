@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Model used to manipulate an article object (called a result)
+ * Model used to manipulate an article object
  */
-public class Result {
+public class Article {
 
     @SerializedName("section")
     @Expose

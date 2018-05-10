@@ -8,16 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
-import com.openclassrooms.mynews.Models.Result;
-import com.openclassrooms.mynews.Models.TopStories;
+import com.openclassrooms.mynews.Models.Article;
+import com.openclassrooms.mynews.Models.Articles;
 import com.openclassrooms.mynews.R;
 
 import java.util.List;
 
 /**
- * Class for the adapter specific to the results
+ * Class for the adapter specific to the articles
  */
-public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
+public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     public interface Listener {
 
@@ -27,13 +27,13 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
     private final Listener callback;
 
     // FOR DATA
-    // private final TopStories results;
-    private final List<Result> resultsL;
+    // private final Articles results;
+    private final List<Article> articleList;
     private final RequestManager glide;
 
     // CONSTRUCTOR
-    public ResultAdapter (TopStories results, RequestManager glide, Listener callback) {
-        this.resultsL = results.getResults();
+    public ArticleAdapter(Articles articles, RequestManager glide, Listener callback) {
+        this.articleList = articles.getArticles();
         this.glide = glide;
         this.callback = callback;
     }
@@ -42,42 +42,42 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
      * Create view holder and inflating its xml layout
      * @param parent ViewGroup
      * @param viewType int
-     * @return ResultViewHolder
+     * @return ArticleViewHolder
      */
     @NonNull
     @Override
-    public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_main_item, parent, false);
 
-        return new ResultViewHolder(view);
+        return new ArticleViewHolder(view);
     }
 
     /**
      * Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
-     * @param viewHolder a ResultViewHolder
+     * @param viewHolder an ArticleViewHolder
      * @param position Integer
      */
     @Override
-    public void onBindViewHolder(@NonNull ResultViewHolder viewHolder, int position) {
-        viewHolder.updateWithResult(this.resultsL.get(position), this.glide, this.callback);
+    public void onBindViewHolder(@NonNull ArticleViewHolder viewHolder, int position) {
+        viewHolder.updateWithResult(this.articleList.get(position), this.glide, this.callback);
     }
 
     /**
      * Returns the total count of items in the list
-     * @return Results list size
+     * @return Articles list size
      */
     @Override
-    public int getItemCount() { return this.resultsL.size();
+    public int getItemCount() { return this.articleList.size();
     }
 
     /**
      * Returns a specific result in the results list
-     * @param position Result position
-     * @return A result
+     * @param position Article position
+     * @return An article
      */
-    public Result getResult(int position){
-        return this.resultsL.get(position);
+    public Article getArticle(int position){
+        return this.articleList.get(position);
     }
 }

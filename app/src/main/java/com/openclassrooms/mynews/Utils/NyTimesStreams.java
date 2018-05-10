@@ -1,6 +1,6 @@
 package com.openclassrooms.mynews.Utils;
 
-import com.openclassrooms.mynews.Models.TopStories;
+import com.openclassrooms.mynews.Models.Articles;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,13 +9,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Class used to manage the streams of the HTTP requests for the Top Stories API
+ * Class used to manage the streams of the HTTP requests for the NY Times API
  */
-public class TopStoriesStreams {
+public class NyTimesStreams {
 
-    public static Observable<TopStories> streamFetchTopStories(){
-        TopStoriesService topStoriesService = TopStoriesService.retrofit.create(TopStoriesService.class);
-        return topStoriesService.getTopStories()
+    public static Observable<Articles> streamFetchTopStories(){
+        NyTimesService nyTimesService = NyTimesService.retrofit.create(NyTimesService.class);
+        return nyTimesService.getTopStories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10000, TimeUnit.SECONDS);

@@ -1,6 +1,6 @@
 package com.openclassrooms.mynews.Utils;
 
-import com.openclassrooms.mynews.Models.TopStories;
+import com.openclassrooms.mynews.Models.Articles;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -11,14 +11,14 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 
 /**
- * Class used to create a Retrofit request for the Top Stories API of the NY Times
+ * Class used to create a Retrofit request for the NY Times API
  */
-interface TopStoriesService {
+interface NyTimesService {
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"
     })
     @GET("svc/topstories/v2/home.json")
-    Observable<TopStories> getTopStories();
+    Observable<Articles> getTopStories();
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 

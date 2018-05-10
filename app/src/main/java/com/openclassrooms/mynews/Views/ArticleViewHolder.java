@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
 import com.openclassrooms.mynews.Models.Multimedium;
-import com.openclassrooms.mynews.Models.Result;
+import com.openclassrooms.mynews.Models.Article;
 import com.openclassrooms.mynews.R;
 import com.openclassrooms.mynews.Utils.MyApplication;
 
@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * Class used to create a new result item in the UI
  */
-public class ResultViewHolder extends RecyclerView.ViewHolder{
+public class ArticleViewHolder extends RecyclerView.ViewHolder{
 
     // FOR DESIGN
     @BindView(R.id.fragment_main_item_section) TextView sectionTv;
@@ -36,26 +36,26 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
     private Context context =  MyApplication.getAppContext();
     private Drawable nytimeslogo = context.getResources().getDrawable(R.drawable.ic_nytimes_logo);
 
-    ResultViewHolder(View itemView){
+    ArticleViewHolder(View itemView){
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
     /**
      * Update the UI with new results
-     * @param result Result object
+     * @param article Article object
      * @param glide Glide object for loading images
-     * @param callback ResultAdapter.Listener
+     * @param callback ArticleAdapter.Listener
      */
-    public void updateWithResult(Result result,  RequestManager glide, ResultAdapter.Listener callback){
+    public void updateWithResult(Article article, RequestManager glide, ArticleAdapter.Listener callback){
         // Add an arrow head to the section of the article when it has a subsection
-        if(!result.getSubsection().isEmpty())
-        this.sectionTv.setText(result.getSection() + " > " + result.getSubsection());
+        if(!article.getSubsection().isEmpty())
+        this.sectionTv.setText(article.getSection() + " > " + article.getSubsection());
         else
-            this.sectionTv.setText(result.getSection());
+            this.sectionTv.setText(article.getSection());
 
         // Parsing the updated date of the article to a new format and setting it the corresponding TextView
-        String dtStart = result.getUpdatedDate();
+        String dtStart = article.getUpdatedDate();
         dtStart = dtStart.replace("T"," ");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatR = new SimpleDateFormat("dd/MM/yyyy");
@@ -68,9 +68,9 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
         }
 
         // Retrieving the thumbnail picture of the article
-        List<Multimedium> images = result.getMultimedia();
+        List<Multimedium> images = article.getMultimedia();
         // If the article does not have any thumbnail : set a default thumbnail in the ImageView
-        if(result.getMultimedia().isEmpty() || result.getMultimedia() == null){
+        if(article.getMultimedia().isEmpty() || article.getMultimedia() == null){
             this.imageIv.setImageDrawable(nytimeslogo);
         }
         // Else set the corresponding thumbnail in the ImageView
@@ -81,8 +81,8 @@ public class ResultViewHolder extends RecyclerView.ViewHolder{
         }
 
         // Setting the title of the article
-        this.titleTv.setText(result.getTitle());
-        WeakReference<ResultAdapter.Listener> callbackWeakRef = new WeakReference<>(callback);
+        this.titleTv.setText(article.getTitle());
+        WeakReference<ArticleAdapter.Listener> callbackWeakRef = new WeakReference<>(callback);
     }
 
 }

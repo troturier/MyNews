@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.mynews.Controllers.Activities.WebViewActivity;
-import com.openclassrooms.mynews.Models.Result;
-import com.openclassrooms.mynews.Models.TopStories;
+import com.openclassrooms.mynews.Models.Article;
+import com.openclassrooms.mynews.Models.Articles;
 import com.openclassrooms.mynews.R;
 import com.openclassrooms.mynews.Utils.ItemClickSupport;
-import com.openclassrooms.mynews.Utils.TopStoriesStreams;
-import com.openclassrooms.mynews.Views.ResultAdapter;
+import com.openclassrooms.mynews.Utils.NyTimesStreams;
+import com.openclassrooms.mynews.Views.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,10 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
-public class MainFragment extends Fragment implements ResultAdapter.Listener {
+/**
+ * Class used for the Fragment of the Main activity
+ */
+public class MainFragment extends Fragment implements ArticleAdapter.Listener {
 
     // FOR DESIGN
     @BindView(R.id.fragment_main_recycler_view)
@@ -38,8 +41,8 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
 
     //FOR DATA
     private Disposable disposable;
-    private List<Result> resultsL;
-    private ResultAdapter adapter;
+    private List<Article> articleList;
+    private ArticleAdapter adapter;
 
     public MainFragment() { }
 
@@ -71,9 +74,9 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
     private void configureOnClickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.fragment_main_item)
                 .setOnItemClickListener((recyclerView, position, v) -> {
-                    Result result = adapter.getResult(position);
+                    Article article = adapter.getArticle(position);
                     Intent intent = new Intent(getContext(), WebViewActivity.class);
-                    intent.putExtra("Url", result.getUrl());
+                    intent.putExtra("Url", article.getUrl());
                     startActivity(intent);
                 });
     }
@@ -86,11 +89,11 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
      * Configure the RecyclerView by creating a new Adapter object and attaching it to the RecyclerView
      */
     private void configureRecyclerView(){
-        this.resultsL = new ArrayList<>();
-        TopStories results = new TopStories();
-        results.setResults(resultsL);
+        this.articleList = new ArrayList<>();
+        Articles articles = new Articles();
+        articles.setArticles(articleList);
         // Create adapter passing in the sample result data
-        this.adapter = new ResultAdapter(results, Glide.with(this), this);
+        this.adapter = new ArticleAdapter(articles, Glide.with(this), this);
         // Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.adapter);
         // Set layout manager to position the items
@@ -112,10 +115,10 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
      * Will execute a Http request using RxJAVA and Retrofit
      */
     private void executeHttpRequestWithRetrofit(){
-        this.disposable = TopStoriesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<TopStories>() {
+        this.disposable = NyTimesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<Articles>() {
             @Override
-            public void onNext(TopStories stories) {
-                updateUI(stories.getResults());
+            public void onNext(Articles stories) {
+                updateUI(stories.getArticles());
             }
 
             @Override
@@ -139,11 +142,11 @@ public class MainFragment extends Fragment implements ResultAdapter.Listener {
 
     /**
      * Update the UI with the new values retrieved by the HTTP request
-     * @param res List of articles (Results)
+     * @param res List of articles (Articles)
      */
-    private void updateUI(List<Result> res){
-        resultsL.clear();
-        resultsL.addAll(res);
+    private void updateUI(List<Article> res){
+        articleList.clear();
+        articleList.addAll(res);
         adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(false);
     }
