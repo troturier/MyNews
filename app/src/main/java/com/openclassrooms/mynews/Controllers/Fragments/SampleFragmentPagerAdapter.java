@@ -9,9 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Class used to create the different tabs displayed on the action bar
  */
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-    private String tabTitles[] = new String[] { "TOP STORIES", "MOST POPULAR"};
+    private String tabTitles[] = new String[] { "TOP STORIES", "MOST POPULAR", "BUSINESS"};
     private Context context;
-    private int PAGE_COUNT = 2;
+    private int PAGE_COUNT = 3;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);

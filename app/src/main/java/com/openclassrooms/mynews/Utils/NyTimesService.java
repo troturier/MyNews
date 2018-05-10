@@ -9,6 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
 
 /**
  * Class used to create a Retrofit request for the NY Times API
@@ -17,8 +18,8 @@ interface NyTimesService {
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"
     })
-    @GET("svc/topstories/v2/home.json")
-    Observable<Articles> getTopStories();
+    @GET("svc/topstories/v2/{section}.json")
+    Observable<Articles> getTopStories(@Path("section") String section);
 
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"

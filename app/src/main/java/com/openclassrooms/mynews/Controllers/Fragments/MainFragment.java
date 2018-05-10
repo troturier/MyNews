@@ -1,5 +1,6 @@
 package com.openclassrooms.mynews.Controllers.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -116,9 +117,13 @@ public class MainFragment extends Fragment implements ArticleAdapter.Listener {
      * Will execute a Http request using RxJAVA and Retrofit
      */
     public void executeHttpRequestWithRetrofit(){
+        ProgressDialog mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
         switch (MainActivity.tabPos){
             case 0:
-                this.disposable = NyTimesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<Articles>() {
+                this.disposable = NyTimesStreams.streamFetchTopStories("home").subscribeWith(new DisposableObserver<Articles>() {
                     @Override
                     public void onNext(Articles stories) {
                         updateUI(stories.getArticles());
@@ -128,7 +133,7 @@ public class MainFragment extends Fragment implements ArticleAdapter.Listener {
                     public void onError(Throwable e) { }
 
                     @Override
-                    public void onComplete() { }
+                    public void onComplete() { mProgressDialog.dismiss(); }
                 });
                 break;
             case 1:
@@ -142,7 +147,21 @@ public class MainFragment extends Fragment implements ArticleAdapter.Listener {
                     public void onError(Throwable e) { }
 
                     @Override
-                    public void onComplete() { }
+                    public void onComplete() { mProgressDialog.dismiss(); }
+                });
+                break;
+            case 2:
+                this.disposable = NyTimesStreams.streamFetchTopStories("business").subscribeWith(new DisposableObserver<Articles>() {
+                    @Override
+                    public void onNext(Articles stories) {
+                        updateUI(stories.getArticles());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { }
+
+                    @Override
+                    public void onComplete() { mProgressDialog.dismiss(); }
                 });
                 break;
         }
