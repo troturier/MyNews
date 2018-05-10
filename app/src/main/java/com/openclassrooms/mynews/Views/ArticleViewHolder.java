@@ -35,6 +35,8 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder{
 
     private Context context =  MyApplication.getAppContext();
     private Drawable nytimeslogo = context.getResources().getDrawable(R.drawable.ic_nytimes_logo);
+    private List<Multimedium> images;
+    private String section;
 
     ArticleViewHolder(View itemView){
         super(itemView);
@@ -49,13 +51,16 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder{
      */
     public void updateWithResult(Article article, RequestManager glide, ArticleAdapter.Listener callback){
         // Add an arrow head to the section of the article when it has a subsection
-        if(!article.getSubsection().isEmpty())
-        this.sectionTv.setText(article.getSection() + " > " + article.getSubsection());
-        else
-            this.sectionTv.setText(article.getSection());
+        section = article.getSection();
+        if(article.getSubsection() != null) {
+            if (!article.getSubsection().isEmpty()) {
+                section = section + " > " + article.getSubsection();
+            }
+        }
+        this.sectionTv.setText(section);
 
         // Parsing the updated date of the article to a new format and setting it the corresponding TextView
-        String dtStart = article.getUpdatedDate();
+        String dtStart = article.getPublishedDate();
         dtStart = dtStart.replace("T"," ");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatR = new SimpleDateFormat("dd/MM/yyyy");
@@ -67,19 +72,23 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder{
             e.printStackTrace();
         }
 
-        // Retrieving the thumbnail picture of the article
-        List<Multimedium> images = article.getMultimedia();
+        if (article.getMedia() == null) {
+            // Retrieving the thumbnail picture of the article
+            images = article.getMultimedia();
+        }
+        else {
+            images = article.getMedia().get(0).getMultimedia();
+        }
         // If the article does not have any thumbnail : set a default thumbnail in the ImageView
-        if(article.getMultimedia().isEmpty() || article.getMultimedia() == null){
+        if (images.isEmpty() || images == null) {
             this.imageIv.setImageDrawable(nytimeslogo);
         }
         // Else set the corresponding thumbnail in the ImageView
         else {
-            for(int i=0; i<images.size();i++) {
+            for (int i = 0; i < images.size(); i++) {
                 glide.load(images.get(0).getUrl()).into(this.imageIv);
             }
         }
-
         // Setting the title of the article
         this.titleTv.setText(article.getTitle());
         WeakReference<ArticleAdapter.Listener> callbackWeakRef = new WeakReference<>(callback);
