@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.openclassrooms.mynews.Controllers.Activities.MainActivity;
 import com.openclassrooms.mynews.Controllers.Activities.WebViewActivity;
 import com.openclassrooms.mynews.Models.Article;
 import com.openclassrooms.mynews.Models.Articles;
@@ -114,19 +115,38 @@ public class MainFragment extends Fragment implements ArticleAdapter.Listener {
     /**
      * Will execute a Http request using RxJAVA and Retrofit
      */
-    private void executeHttpRequestWithRetrofit(){
-        this.disposable = NyTimesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<Articles>() {
-            @Override
-            public void onNext(Articles stories) {
-                updateUI(stories.getArticles());
-            }
+    public void executeHttpRequestWithRetrofit(){
+        switch (MainActivity.tabPos){
+            case 0:
+                this.disposable = NyTimesStreams.streamFetchTopStories().subscribeWith(new DisposableObserver<Articles>() {
+                    @Override
+                    public void onNext(Articles stories) {
+                        updateUI(stories.getArticles());
+                    }
 
-            @Override
-            public void onError(Throwable e) { }
+                    @Override
+                    public void onError(Throwable e) { }
 
-            @Override
-            public void onComplete() { }
-        });
+                    @Override
+                    public void onComplete() { }
+                });
+                break;
+            case 1:
+                this.disposable = NyTimesStreams.streamFetchMostPopular().subscribeWith(new DisposableObserver<Articles>() {
+                    @Override
+                    public void onNext(Articles stories) {
+                        updateUI(stories.getArticles());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { }
+
+                    @Override
+                    public void onComplete() { }
+                });
+                break;
+        }
+
     }
 
     /**

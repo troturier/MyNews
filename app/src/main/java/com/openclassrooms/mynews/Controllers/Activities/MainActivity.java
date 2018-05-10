@@ -19,11 +19,14 @@ import com.openclassrooms.mynews.R;
 public class MainActivity extends AppCompatActivity  {
 
     private final static String TAG = MainActivity.class.getSimpleName();
+    private MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+    public static int tabPos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.configureAndShowMainFragment();
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -33,31 +36,13 @@ public class MainActivity extends AppCompatActivity  {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        this.configureAndShowMainFragment();
-    }
-
-    /**
-     * Inflate the menu : adds items to the action bar.
-     * @param menu Menu item
-     * @return True if succeeded
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    /**
-     * Callback interface invoked when a tab's selection state changes.
-     * @param pager ViewPager
-     * @return TabLayout.OnTabSelectedListener
-     */
-    private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager pager) {
-        return new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                pager.setCurrentItem(tab.getPosition());
+                super.onTabSelected(tab);
+                viewPager.setCurrentItem(tab.getPosition());
+                tabPos = tab.getPosition();
+                mainFragment.executeHttpRequestWithRetrofit();
             }
 
             @Override
@@ -69,7 +54,18 @@ public class MainActivity extends AppCompatActivity  {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-        };
+        });
+    }
+
+    /**
+     * Inflate the menu : adds items to the action bar.
+     * @param menu Menu item
+     * @return True if succeeded
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     /**
@@ -85,12 +81,10 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.mSearch:
                 Intent intentSearch = new Intent(this, SearchActivity.class);
                 startActivity(intentSearch);
-                return true;
 
             case R.id.mNotifications:
                 Intent intentNotifications = new Intent(this, NotificationsActivity.class);
                 startActivity(intentNotifications);
-                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -108,8 +102,6 @@ public class MainActivity extends AppCompatActivity  {
      * Configure and show the MainFragment
      */
     private void configureAndShowMainFragment(){
-
-        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
 
         if (mainFragment == null) {
             mainFragment = new MainFragment();
