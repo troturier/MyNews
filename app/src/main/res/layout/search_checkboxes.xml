@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <CheckBox
+            android:id="@+id/search_cb_arts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/arts"
+            android:button="@drawable/cb_selector"/>
+
+        <CheckBox
+            android:id="@+id/search_cb_politics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/politics"
+            android:button="@drawable/cb_selector"/>
+
+        <CheckBox
+            android:id="@+id/search_cb_business"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/business"
+            android:button="@drawable/cb_selector"/>
+
+        <CheckBox
+            android:id="@+id/search_cb_sports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/sports"
+            android:button="@drawable/cb_selector"/>
+
+        <CheckBox
+            android:id="@+id/search_cb_entrepreneurs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/entrepreneurs"
+            android:button="@drawable/cb_selector"/>
+
+        <CheckBox
+            android:id="@+id/search_cb_travel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/travel"
+            android:button="@drawable/cb_selector"/>
+    </GridLayout>
+
+</android.support.constraint.ConstraintLayout>
