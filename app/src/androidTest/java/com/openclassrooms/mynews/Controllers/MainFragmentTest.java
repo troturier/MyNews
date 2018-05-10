@@ -21,7 +21,7 @@ public class MainFragmentTest {
 
     @Test
     public void fetchTopStoriesTest() throws Exception {
-        Observable<Articles> observableArticles = NyTimesStreams.streamFetchTopStories();
+        Observable<Articles> observableArticles = NyTimesStreams.streamFetchTopStories("home");
         TestObserver<Articles> testObserver = new TestObserver<>();
 
         observableArticles.subscribeWith(testObserver)

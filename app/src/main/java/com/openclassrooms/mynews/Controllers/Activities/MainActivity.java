@@ -26,8 +26,12 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.configureAndShowMainFragment();
-
+        if(savedInstanceState == null) {
+            this.configureAndShowMainFragment();
+        }
+        else {
+            mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+        }
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
@@ -76,10 +80,12 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.mSearch:
                 Intent intentSearch = new Intent(this, SearchActivity.class);
                 startActivity(intentSearch);
+                return true;
 
             case R.id.mNotifications:
                 Intent intentNotifications = new Intent(this, NotificationsActivity.class);
                 startActivity(intentNotifications);
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
