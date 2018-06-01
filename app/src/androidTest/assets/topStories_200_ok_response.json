@@ -1,0 +1,79 @@
+{ "status": "OK",
+  "copyright": "Copyright (c) 2018 The New York Times Company. All Rights Reserved.",
+  "section": "home",
+  "last_updated": "2018-05-16T02:17:07-04:00",
+  "num_results": 1,
+  "results": [
+    {
+      "section": "Briefing",
+      "subsection": "",
+      "title": "North Korea, Gaza, Gina Haspel: Your Tuesday Evening Briefing",
+      "abstract": "Here’s what you need to know at the end of the day.",
+      "url": "https://www.nytimes.com/2018/05/15/briefing/north-korea-gaza-gina-haspel.html",
+      "byline": "By KAREN ZRAICK and VIRGINIA LOZANO",
+      "item_type": "Article",
+      "updated_date": "2018-05-15T18:30:43-04:00",
+      "created_date": "2018-05-15T18:25:03-04:00",
+      "published_date": "2018-05-15T18:25:03-04:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2018/05/15/briefing/051518Eveningbriefing-promo/15Eveningbriefing-promo-thumbStandard-v4.jpg",
+          "format": "Standard Thumbnail",
+          "height": 75,
+          "width": 75,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Ahn Young-Joon/Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2018/05/15/briefing/051518Eveningbriefing-promo/15Eveningbriefing-promo-thumbLarge-v4.jpg",
+          "format": "thumbLarge",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Ahn Young-Joon/Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2018/05/15/briefing/051518Eveningbriefing-promo/15Eveningbriefing-promo-articleInline-v3.jpg",
+          "format": "Normal",
+          "height": 135,
+          "width": 190,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Ahn Young-Joon/Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2018/05/15/briefing/051518Eveningbriefing-promo/15Eveningbriefing-promo-mediumThreeByTwo210-v4.jpg",
+          "format": "mediumThreeByTwo210",
+          "height": 140,
+          "width": 210,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Ahn Young-Joon/Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2018/05/15/briefing/051518Eveningbriefing-promo/15Eveningbriefing-promo-superJumbo-v4.jpg",
+          "format": "superJumbo",
+          "height": 188,
+          "width": 624,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Ahn Young-Joon/Associated Press"
+        }
+      ],
+      "short_url": "https://nyti.ms/2IlXyD6"
+    }
+  ]
+}

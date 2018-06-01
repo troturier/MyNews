@@ -1,0 +1,101 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2018 The New York Times Company.  All Rights Reserved.",
+  "num_results": 1912,
+  "results": [
+    {
+      "url": "https://www.nytimes.com/interactive/2018/05/16/upshot/audio-clip-yanny-laurel-debate.html",
+      "adx_keywords": "Computers and the Internet;Social Media;Audio Recordings, Downloads and Streaming",
+      "column": "",
+      "section": "The Upshot",
+      "byline": "By JOSH KATZ, JONATHAN CORUM and JON HUANG",
+      "type": "Interactive",
+      "title": "We Made a Tool So You Can Hear Both Yanny and Laurel",
+      "abstract": "How far do you have to move our slider to hear one name or the other?",
+      "published_date": "2018-05-16",
+      "source": "The New York Times",
+      "id": 100000005903945,
+      "asset_id": 100000005903945,
+      "views": 1,
+      "des_facet": [
+        "COMPUTERS AND THE INTERNET",
+        "SOCIAL MEDIA",
+        "AUDIO RECORDINGS, DOWNLOADS AND STREAMING"
+      ],
+      "org_facet": "",
+      "per_facet": "",
+      "geo_facet": "",
+      "media": [
+        {
+          "type": "image",
+          "subtype": "photo",
+          "caption": null,
+          "copyright": null,
+          "approved_for_syndication": 0,
+          "media-metadata": [
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-square320.jpg",
+              "format": "square320",
+              "height": 320,
+              "width": 320
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-thumbStandard.jpg",
+              "format": "Standard Thumbnail",
+              "height": 75,
+              "width": 75
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-articleInline.jpg",
+              "format": "Normal",
+              "height": 127,
+              "width": 190
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-sfSpan.jpg",
+              "format": "Large",
+              "height": 263,
+              "width": 395
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-jumbo.jpg",
+              "format": "Jumbo",
+              "height": 683,
+              "width": 1024
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-superJumbo.jpg",
+              "format": "superJumbo",
+              "height": 1366,
+              "width": 2048
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-square640.jpg",
+              "format": "square640",
+              "height": 640,
+              "width": 640
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-thumbLarge.jpg",
+              "format": "Large Thumbnail",
+              "height": 150,
+              "width": 150
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-mediumThreeByTwo210.jpg",
+              "format": "mediumThreeByTwo210",
+              "height": 140,
+              "width": 210
+            },
+            {
+              "url": "https://static01.nyt.com/images/2018/05/16/us/audio-clip-yanny-laurel-debate-promo-1526486169451/audio-clip-yanny-laurel-debate-promo-1526486169451-mediumThreeByTwo440.jpg",
+              "format": "mediumThreeByTwo440",
+              "height": 293,
+              "width": 440
+            }
+          ]
+        }
+      ]
+    }
+    ]
+}
