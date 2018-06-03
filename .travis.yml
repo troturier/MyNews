@@ -34,4 +34,4 @@ script:
   - ./gradlew assembleDebug
   - ./gradlew assembleDebugAndroidTest
   - adb install app/build/outputs/apk/debug/app-debug.apk
-  - ./gradlew connectedAndroidTest
+  - ./gradlew connectedAndroidTest coveralls
