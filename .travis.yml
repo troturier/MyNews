@@ -35,3 +35,7 @@ script:
   - ./gradlew assembleDebugAndroidTest
   - adb install app/build/outputs/apk/debug/app-debug.apk
   - ./gradlew connectedAndroidTest
+  - sbt clean coverage test
+  
+after_success:
+  - sbt coveralls
