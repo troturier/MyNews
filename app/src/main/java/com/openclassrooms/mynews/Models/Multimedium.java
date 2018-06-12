@@ -21,6 +21,9 @@ public class Multimedium {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("subtype")
+    @Expose
+    private String subtype;
 
     public String getUrl() {
         return url;
@@ -54,4 +57,11 @@ public class Multimedium {
         this.type = type;
     }
 
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
+    }
 }

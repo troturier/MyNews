@@ -6,6 +6,7 @@ import android.test.InstrumentationTestCase;
 
 import com.openclassrooms.mynews.Models.Article;
 import com.openclassrooms.mynews.Models.Articles;
+import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.Utils.NyTimesStreamsTest;
 import com.openclassrooms.mynews.Utils.RestServiceTestHelper;
 
@@ -81,5 +82,26 @@ public class MainFragmentTest extends InstrumentationTestCase {
         List<Article> articles = testObserver.values().get(0).getArticles();
 
         assertThat("The result list is not empty", !articles.isEmpty());
+    }
+
+    @Test
+    public void fetchSearchTest() throws Exception {
+        String fileName = "search_200_ok_response.json";
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(RestServiceTestHelper.getStringFromFile(getInstrumentation().getContext(), fileName)));
+
+        Observable<Result> observableResult = NyTimesStreamsTest.streamSearch();
+        TestObserver<Result> testObserver = new TestObserver<>();
+
+        observableResult.subscribeWith(testObserver)
+                .assertNoErrors()
+                .assertNoTimeout()
+                .awaitTerminalEvent();
+
+        Articles articles = testObserver.values().get(0).getArticles();
+        List<Article> articlesL = articles.getArticles();
+
+        assertThat("The result list is not empty", !articlesL.isEmpty());
     }
 }

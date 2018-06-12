@@ -11,6 +11,33 @@ import java.util.List;
  */
 public class Article {
 
+    @SerializedName("web_url")
+    @Expose
+    private String webUrl;
+    @SerializedName("snippet")
+    @Expose
+    private String snippet;
+    @SerializedName("pub_date")
+    @Expose
+    private String pubDate;
+    @SerializedName("document_type")
+    @Expose
+    private String documentType;
+    @SerializedName("new_desk")
+    @Expose
+    private String newDesk;
+    @SerializedName("headline")
+    @Expose
+    private Headline headline;
+    @SerializedName("type_of_material")
+    @Expose
+    private String typeOfMaterial;
+    @SerializedName("section_name")
+    @Expose
+    private String sectionName;
+    @SerializedName("uri")
+    @Expose
+    private String uri;
     @SerializedName("section")
     @Expose
     private String section;
@@ -87,5 +114,77 @@ public class Article {
 
     public void setMedia(List<Medium> media) {
         this.media = media;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getNewDesk() {
+        return newDesk;
+    }
+
+    public void setNewDesk(String newDesk) {
+        this.newDesk = newDesk;
+    }
+
+    public String getTypeOfMaterial() {
+        return typeOfMaterial;
+    }
+
+    public void setTypeOfMaterial(String typeOfMaterial) {
+        this.typeOfMaterial = typeOfMaterial;
+    }
+
+    public String getSectionName() {
+        return sectionName;
+    }
+
+    public void setSectionName(String sectionName) {
+        this.sectionName = sectionName;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public Headline getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(Headline headline) {
+        this.headline = headline;
+    }
+
+    public String getSnippet() {
+        return snippet;
+    }
+
+    public void setSnippet(String snippet) {
+        this.snippet = snippet;
     }
 }

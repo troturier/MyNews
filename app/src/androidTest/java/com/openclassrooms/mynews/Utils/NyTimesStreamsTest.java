@@ -1,6 +1,7 @@
 package com.openclassrooms.mynews.Utils;
 
 import com.openclassrooms.mynews.Models.Articles;
+import com.openclassrooms.mynews.Models.Result;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +22,14 @@ public class NyTimesStreamsTest {
     public static Observable<Articles> streamFetchMostPopular(){
         NyTimesServiceTest nyTimesServiceTest = NyTimesServiceTest.retrofit.create(NyTimesServiceTest.class);
         return nyTimesServiceTest.getMostPopular()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10000, TimeUnit.SECONDS);
+    }
+
+    public static Observable<Result> streamSearch(){
+        NyTimesServiceTest nyTimesServiceTest = NyTimesServiceTest.retrofit.create(NyTimesServiceTest.class);
+        return nyTimesServiceTest.getSearch()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10000, TimeUnit.SECONDS);

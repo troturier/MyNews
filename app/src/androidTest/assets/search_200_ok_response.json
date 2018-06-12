@@ -1,0 +1,162 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2018 The New York Times Company. All Rights Reserved.",
+  "response": {
+    "docs": [
+      {
+        "web_url": "https://www.nytimes.com/2015/02/21/world/asia/china-women-lag-in-work-force-especially-in-top-jobs.html",
+        "snippet": "An economic boom that has created opportunities for women has also fostered a resurgence of traditional values, the idea that a woman&#8217;s place is in the home.",
+        "print_page": "1",
+        "blog": {},
+        "source": "The New York Times",
+        "multimedia": [
+          {
+            "rank": 0,
+            "subtype": "xlarge",
+            "caption": null,
+            "credit": null,
+            "type": "image",
+            "url": "images/2015/02/21/world/21CHINAWOMEN3/21CHINAWOMEN3-articleLarge.jpg",
+            "height": 400,
+            "width": 600,
+            "legacy": {
+              "xlargewidth": 600,
+              "xlarge": "images/2015/02/21/world/21CHINAWOMEN3/21CHINAWOMEN3-articleLarge.jpg",
+              "xlargeheight": 400
+            },
+            "subType": "xlarge",
+            "crop_name": null
+          },
+          {
+            "rank": 0,
+            "subtype": "wide",
+            "caption": null,
+            "credit": null,
+            "type": "image",
+            "url": "images/2015/02/21/world/21CHINAWOMEN3/21CHINAWOMEN3-thumbWide.jpg",
+            "height": 126,
+            "width": 190,
+            "legacy": {
+              "wide": "images/2015/02/21/world/21CHINAWOMEN3/21CHINAWOMEN3-thumbWide.jpg",
+              "widewidth": 190,
+              "wideheight": 126
+            },
+            "subType": "wide",
+            "crop_name": null
+          },
+          {
+            "rank": 0,
+            "subtype": "thumbnail",
+            "caption": null,
+            "credit": null,
+            "type": "image",
+            "url": "images/2015/02/21/world/21CHINAWOMEN3/21CHINAWOMEN3-thumbStandard.jpg",
+            "height": 75,
+            "width": 75,
+            "legacy": {
+              "thumbnailheight": 75,
+              "thumbnail": "images/2015/02/21/world/21CHINAWOMEN3/21CHINAWOMEN3-thumbStandard.jpg",
+              "thumbnailwidth": 75
+            },
+            "subType": "thumbnail",
+            "crop_name": null
+          }
+        ],
+        "headline": {
+          "main": "In China’s Modern Economy, a Retro Push Against Women",
+          "kicker": null,
+          "content_kicker": null,
+          "print_headline": "In China’s Modern Economy, a Retro Push Against Women",
+          "name": null,
+          "seo": null,
+          "sub": null
+        },
+        "keywords": [
+          {
+            "name": "glocations",
+            "value": "China",
+            "rank": 1,
+            "major": "N"
+          },
+          {
+            "name": "subject",
+            "value": "Women's Rights",
+            "rank": 2,
+            "major": "N"
+          },
+          {
+            "name": "subject",
+            "value": "Women and Girls",
+            "rank": 3,
+            "major": "N"
+          },
+          {
+            "name": "subject",
+            "value": "Discrimination",
+            "rank": 4,
+            "major": "N"
+          },
+          {
+            "name": "organizations",
+            "value": "Communist Party of China",
+            "rank": 5,
+            "major": "N"
+          },
+          {
+            "name": "organizations",
+            "value": "Politburo Standing Committee of the Communist Party of China",
+            "rank": 6,
+            "major": "N"
+          },
+          {
+            "name": "subject",
+            "value": "Boards of Directors",
+            "rank": 7,
+            "major": "N"
+          },
+          {
+            "name": "subject",
+            "value": "Labor and Jobs",
+            "rank": 8,
+            "major": "N"
+          }
+        ],
+        "pub_date": "2015-02-20T18:38:24+0000",
+        "document_type": "article",
+        "new_desk": "Foreign",
+        "section_name": "Asia Pacific",
+        "byline": {
+          "original": "By DIDI KIRSTEN TATLOW and MICHAEL FORSYTHE",
+          "person": [
+            {
+              "firstname": "Didi",
+              "middlename": "Kirsten",
+              "lastname": "TATLOW",
+              "qualifier": null,
+              "title": null,
+              "role": "reported",
+              "organization": "",
+              "rank": 1
+            },
+            {
+              "firstname": "Michael",
+              "middlename": null,
+              "lastname": "FORSYTHE",
+              "qualifier": null,
+              "title": null,
+              "role": "reported",
+              "organization": "",
+              "rank": 2
+            }
+          ],
+          "organization": null
+        },
+        "type_of_material": "News",
+        "_id": "54e77f1f38f0d80c5b84bc46",
+        "word_count": 1416,
+        "score": 1,
+        "uri": "nyt://article/a8168add-c903-52ff-abc5-4d085b33a172"
+      }
+    ]
+  }
+}

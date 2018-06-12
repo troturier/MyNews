@@ -2,6 +2,7 @@ package com.openclassrooms.mynews.Utils;
 
 import com.openclassrooms.mynews.Controllers.MainFragmentTest;
 import com.openclassrooms.mynews.Models.Articles;
+import com.openclassrooms.mynews.Models.Result;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -17,6 +18,9 @@ public interface NyTimesServiceTest {
 
     @GET("/mostPopular_200_ok_response.json")
     Observable<Articles> getMostPopular();
+
+    @GET("/search_200_ok_response.json")
+    Observable<Result> getSearch();
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 

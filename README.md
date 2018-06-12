@@ -1,6 +1,8 @@
 # MyNews
 ## *Renouez avec l'actualité*
 
+[![Coverage Status](https://coveralls.io/repos/github/troturier/MyNews/badge.svg?branch=master)](https://coveralls.io/github/troturier/MyNews?branch=master)
+
 ### Introduction
 Vous avez codé toute la journée, la fatigue vous gagne. Vous commencez à loucher et à bailler à vous décrocher la mâchoire. Il vous faut votre dose de café pour tenir. En sortant de chez vous pour vous rendre au Starbucks du coin, vous vous surprenez à lire un grand titre sur une façade de kiosque : “Donald Trump félicite Emmanuel Macron pour sa victoire”. Tiens donc, quelle victoire ? D’ailleurs c’est qui Macron ? Et Trump ?
 

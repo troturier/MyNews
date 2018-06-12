@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Articles {
 
-    @SerializedName("results")
+    @SerializedName(value="results", alternate={"docs"})
     @Expose
     private List<Article> articles = null;
 
