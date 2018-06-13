@@ -1,10 +1,14 @@
 package com.openclassrooms.mynews.Controllers.Activities;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.openclassrooms.mynews.R;
@@ -27,7 +31,6 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         // Setting up the return button and the activity title displayed in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Search Articles");
 
         // Finding the two EditText responsible for managing dates in the search activity
         startDate = findViewById(R.id.search_begin_date);
@@ -134,6 +137,21 @@ public class SearchActivity extends AppCompatActivity {
             }
             endDate.setText(dayS + "/" + monthS + "/" + year);
         };
+
+        TextInputEditText searchQuery = findViewById(R.id.query_include);
+        if (searchQuery == null){
+            searchQuery = findViewById(R.id.search_query_term);
+        }
+
+        Button searchButton = findViewById(R.id.search_submit_button);
+        TextInputEditText finalSearchQuery = searchQuery;
+        searchButton.setOnClickListener(view -> {
+            Log.d("Search", finalSearchQuery.toString());
+            Intent intent = new Intent(view.getContext(), SearchResultActivity.class);
+            intent.putExtra("SearchQuery", finalSearchQuery.getText().toString());
+            view.getContext().startActivity(intent);
+        });
+
     }
 
     /**
@@ -145,5 +163,4 @@ public class SearchActivity extends AppCompatActivity {
         finish();
         return true;
     }
-
 }

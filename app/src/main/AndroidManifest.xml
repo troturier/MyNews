@@ -22,9 +22,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controllers.Fragments.MainFragment" />
+        <activity android:name=".Controllers.Fragments.SearchFragment" />
         <activity android:name=".Controllers.Activities.WebViewActivity" />
         <activity android:name=".Controllers.Activities.SearchActivity" />
-        <activity android:name=".Controllers.Activities.NotificationsActivity"></activity>
+        <activity android:name=".Controllers.Activities.NotificationsActivity" />
+        <activity android:name=".Controllers.Activities.SearchResultActivity"></activity>
     </application>
 
 </manifest>
