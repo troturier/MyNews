@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -146,7 +145,6 @@ public class SearchActivity extends AppCompatActivity {
         Button searchButton = findViewById(R.id.search_submit_button);
         TextInputEditText finalSearchQuery = searchQuery;
         searchButton.setOnClickListener(view -> {
-            Log.d("Search", finalSearchQuery.toString());
             Intent intent = new Intent(view.getContext(), SearchResultActivity.class);
             intent.putExtra("SearchQuery", finalSearchQuery.getText().toString());
             view.getContext().startActivity(intent);

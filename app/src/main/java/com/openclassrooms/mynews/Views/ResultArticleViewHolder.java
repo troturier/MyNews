@@ -3,6 +3,8 @@ package com.openclassrooms.mynews.Views;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,16 +53,14 @@ public class ResultArticleViewHolder extends RecyclerView.ViewHolder{
      */
     public void updateWithResult(Article article, RequestManager glide, ResultArticleAdapter.Listener callback){
         // Add an arrow head to the section of the article when it has a subsection
-        section = article.getSection();
-        if(article.getSubsection() != null) {
-            if (!article.getSubsection().isEmpty()) {
-                section = section + " > " + article.getSubsection();
-            }
+        section = article.getSectionName();
+        if (TextUtils.isEmpty(section)){
+            section = article.getNewDesk();
         }
         this.sectionTv.setText(section);
 
         // Parsing the updated date of the article to a new format and setting it the corresponding TextView
-        String dtStart = article.getPublishedDate();
+        String dtStart = article.getPubDate();
         dtStart = dtStart.replace("T"," ");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatR = new SimpleDateFormat("dd/MM/yyyy");
@@ -72,13 +72,8 @@ public class ResultArticleViewHolder extends RecyclerView.ViewHolder{
             e.printStackTrace();
         }
 
-        if (article.getMedia() == null) {
-            // Retrieving the thumbnail picture of the article
-            images = article.getMultimedia();
-        }
-        else {
-            images = article.getMedia().get(0).getMultimedia();
-        }
+        images = article.getMultimedia();
+
         // If the article does not have any thumbnail : set a default thumbnail in the ImageView
         if (images.isEmpty() || images == null) {
             this.imageIv.setImageDrawable(nytimeslogo);
@@ -86,11 +81,15 @@ public class ResultArticleViewHolder extends RecyclerView.ViewHolder{
         // Else set the corresponding thumbnail in the ImageView
         else {
             for (int i = 0; i < images.size(); i++) {
-                glide.load(images.get(0).getUrl()).into(this.imageIv);
+                if (images.get(i).getSubtype().equals("thumbnail")){
+                    Log.d("Thumb", "found");
+                    String url = "https://static01.nyt.com/" + images.get(i).getUrl();
+                    glide.load(url).into(this.imageIv);
+                }
             }
         }
         // Setting the title of the article
-        this.titleTv.setText(article.getTitle());
+        this.titleTv.setText(article.getSnippet());
         WeakReference<ResultArticleAdapter.Listener> callbackWeakRef = new WeakReference<>(callback);
     }
 

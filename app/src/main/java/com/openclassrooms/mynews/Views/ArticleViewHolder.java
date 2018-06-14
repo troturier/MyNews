@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
-import com.openclassrooms.mynews.Models.Multimedium;
 import com.openclassrooms.mynews.Models.Article;
+import com.openclassrooms.mynews.Models.Multimedium;
 import com.openclassrooms.mynews.R;
 import com.openclassrooms.mynews.Utils.MyApplication;
 

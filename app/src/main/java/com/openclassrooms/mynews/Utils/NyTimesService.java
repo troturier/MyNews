@@ -1,6 +1,7 @@
 package com.openclassrooms.mynews.Utils;
 
 import com.openclassrooms.mynews.Models.Articles;
+import com.openclassrooms.mynews.Models.Result;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -15,16 +16,20 @@ import retrofit2.http.Path;
  * Class used to create a Retrofit request for the NY Times API
  */
 interface NyTimesService {
+
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"
     })
     @GET("svc/topstories/v2/{section}.json")
     Observable<Articles> getTopStories(@Path("section") String section);
 
+    @GET("svc/search/v2/articlesearch.json?api-key=514f85e678024ec3a52dd5cb986fdc63&sort=newest&fq=type_of_material:News")
+    Observable<Result> getSearch();
+
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"
     })
-    @GET("https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json")
+    @GET("svc/mostpopular/v2/mostviewed/all-sections/1.json")
     Observable<Articles> getMostPopular();
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();

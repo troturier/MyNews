@@ -31,7 +31,7 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
         if(savedInstanceState == null) {
-            this.configureAndShowSearchFragment();
+            this.configureAndShowSearchFragment(query);
         }
         else{
             searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.activity_search_frame_layout);
@@ -49,9 +49,11 @@ public class SearchResultActivity extends AppCompatActivity {
         return true;
     }
 
-    public void configureAndShowSearchFragment(){
+    public void configureAndShowSearchFragment(String query){
         if(searchFragment == null ) {
             searchFragment = new SearchFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("query", query);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.activity_search_frame_layout, searchFragment)
                     .commit();

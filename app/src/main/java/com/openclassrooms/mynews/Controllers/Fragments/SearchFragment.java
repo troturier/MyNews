@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.openclassrooms.mynews.Controllers.Activities.WebViewActivity;
 import com.openclassrooms.mynews.Models.Article;
 import com.openclassrooms.mynews.Models.Articles;
+import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.R;
 import com.openclassrooms.mynews.Utils.ItemClickSupport;
 import com.openclassrooms.mynews.Utils.NyTimesStreams;
@@ -72,7 +73,7 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
                 .setOnItemClickListener((recyclerView, position, v) -> {
                     Article article = adapterSearch.getArticle(position);
                     Intent intent = new Intent(getContext(), WebViewActivity.class);
-                    intent.putExtra("Url", article.getUrl());
+                    intent.putExtra("Url", article.getWebUrl());
                     startActivity(intent);
                 });
     }
@@ -115,10 +116,10 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
-        this.disposableSearch = NyTimesStreams.streamFetchTopStories("home").subscribeWith(new DisposableObserver<Articles>() {
+        this.disposableSearch = NyTimesStreams.streamFetchSearch("home").subscribeWith(new DisposableObserver<Result>() {
                     @Override
-                    public void onNext(Articles stories) {
-                        updateUISearch(stories.getArticles());
+                    public void onNext(Result result) {
+                        updateUISearch(result.getArticles().getArticles());
                     }
 
                     @Override
