@@ -192,7 +192,7 @@ public class SearchActivity extends AppCompatActivity {
             for(int i = 0; i < cb.size(); i++){
                 if(cb.get(i).isChecked()) {
                     if(count == 0) {
-                        section = section + " AND section_name:(" + cb.get(i).getText().toString();
+                        section = section + " AND news_desk:(" + cb.get(i).getText().toString();
                         count++;
                     }
                     else if(count > 0){
