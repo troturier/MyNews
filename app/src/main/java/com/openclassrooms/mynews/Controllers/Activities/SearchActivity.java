@@ -12,7 +12,10 @@ import android.widget.EditText;
 
 import com.openclassrooms.mynews.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Activity used for article search
@@ -23,6 +26,9 @@ public class SearchActivity extends AppCompatActivity {
     private EditText endDate;
     private DatePickerDialog.OnDateSetListener dateListener;
     private DatePickerDialog.OnDateSetListener dateListener2;
+    private String sDate = "";
+    private String eDate = "";
+    private Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +120,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Will update the concerned EditText with the date value chosen by the user
         dateListener = (view, year, month, dayOfMonth) -> {
-            String monthS = Integer.toString(month);
+            String monthS = Integer.toString(month + 1);
             String dayS = Integer.toString(dayOfMonth);
             if (month <10) {
                 monthS = "0" + monthS;
@@ -126,7 +132,7 @@ public class SearchActivity extends AppCompatActivity {
         };
 
         dateListener2 = (view, year, month, dayOfMonth) -> {
-            String monthS = Integer.toString(month);
+            String monthS = Integer.toString(month + 1);
             String dayS = Integer.toString(dayOfMonth);
             if (month <10) {
                 monthS = "0" + monthS;
@@ -142,11 +148,32 @@ public class SearchActivity extends AppCompatActivity {
             searchQuery = findViewById(R.id.search_query_term);
         }
 
+        String inputPattern = "dd/MM/yyyy";
+        String outputPattern = "yyyyMMdd";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+
         Button searchButton = findViewById(R.id.search_submit_button);
         TextInputEditText finalSearchQuery = searchQuery;
         searchButton.setOnClickListener(view -> {
+            try {
+                date = inputFormat.parse(startDate.getText().toString());
+                sDate = outputFormat.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                date = inputFormat.parse(endDate.getText().toString());
+                eDate = outputFormat.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             Intent intent = new Intent(view.getContext(), SearchResultActivity.class);
             intent.putExtra("SearchQuery", finalSearchQuery.getText().toString());
+            intent.putExtra("start_date", sDate);
+            intent.putExtra("end_date", eDate);
             view.getContext().startActivity(intent);
         });
 

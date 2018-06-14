@@ -82,7 +82,6 @@ public class ResultArticleViewHolder extends RecyclerView.ViewHolder{
         else {
             for (int i = 0; i < images.size(); i++) {
                 if (images.get(i).getSubtype().equals("thumbnail")){
-                    Log.d("Thumb", "found");
                     String url = "https://static01.nyt.com/" + images.get(i).getUrl();
                     glide.load(url).into(this.imageIv);
                 }

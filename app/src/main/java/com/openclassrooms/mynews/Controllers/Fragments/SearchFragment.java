@@ -44,6 +44,9 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
     private Disposable disposableSearch;
     private List<Article> articleList2;
     private ResultArticleAdapter adapterSearch;
+    private String query = "";
+    private String start_date = "";
+    private String end_date = "";
 
     public SearchFragment() { }
 
@@ -52,6 +55,12 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ButterKnife.bind(this, view);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            query = bundle.getString("query", null);
+            start_date = bundle.getString("sDate", null);
+            end_date = bundle.getString("eDate", null);
+        }
         this.configureRecyclerView();
         this.configureSwipeRefreshLayout();
         this.configureOnClickRecyclerView();
@@ -116,7 +125,7 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
-        this.disposableSearch = NyTimesStreams.streamFetchSearch("home").subscribeWith(new DisposableObserver<Result>() {
+        this.disposableSearch = NyTimesStreams.streamFetchSearch(query, start_date, end_date).subscribeWith(new DisposableObserver<Result>() {
                     @Override
                     public void onNext(Result result) {
                         updateUISearch(result.getArticles().getArticles());
