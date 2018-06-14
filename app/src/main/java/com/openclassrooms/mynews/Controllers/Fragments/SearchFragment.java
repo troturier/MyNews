@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.mynews.Controllers.Activities.WebViewActivity;
@@ -21,6 +22,7 @@ import com.openclassrooms.mynews.Models.Articles;
 import com.openclassrooms.mynews.Models.Result;
 import com.openclassrooms.mynews.R;
 import com.openclassrooms.mynews.Utils.ItemClickSupport;
+import com.openclassrooms.mynews.Utils.MyApplication;
 import com.openclassrooms.mynews.Utils.NyTimesStreams;
 import com.openclassrooms.mynews.Views.ResultArticleAdapter;
 
@@ -47,6 +49,7 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
     private String query = "";
     private String start_date = "";
     private String end_date = "";
+    private String section = "";
 
     public SearchFragment() { }
 
@@ -60,6 +63,7 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
             query = bundle.getString("query", null);
             start_date = bundle.getString("sDate", null);
             end_date = bundle.getString("eDate", null);
+            section = bundle.getString("section", "type_of_material:News");
         }
         this.configureRecyclerView();
         this.configureSwipeRefreshLayout();
@@ -125,7 +129,7 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
-        this.disposableSearch = NyTimesStreams.streamFetchSearch(query, start_date, end_date).subscribeWith(new DisposableObserver<Result>() {
+        this.disposableSearch = NyTimesStreams.streamFetchSearch(query, start_date, end_date, section).subscribeWith(new DisposableObserver<Result>() {
                     @Override
                     public void onNext(Result result) {
                         updateUISearch(result.getArticles().getArticles());
@@ -157,6 +161,10 @@ public class SearchFragment extends Fragment implements ResultArticleAdapter.Lis
     private void updateUISearch(List<Article> res){
         articleList2.clear();
         articleList2.addAll(res);
+        if (articleList2.size() == 0){
+            getActivity().onBackPressed();
+            Toast.makeText(MyApplication.getAppContext(), "No article found with current parameters", Toast.LENGTH_LONG).show();
+        }
         adapterSearch.notifyDataSetChanged();
         swipeRefreshLayoutSearch.setRefreshing(false);
     }

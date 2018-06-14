@@ -9,7 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -25,11 +24,12 @@ interface NyTimesService {
     @GET("svc/topstories/v2/{section}.json")
     Observable<Articles> getTopStories(@Path("section") String section);
 
-    @GET("svc/search/v2/articlesearch.json?api-key=514f85e678024ec3a52dd5cb986fdc63&sort=newest&fq=type_of_material:News")
+    @GET("svc/search/v2/articlesearch.json?api-key=514f85e678024ec3a52dd5cb986fdc63&sort=newest")
     Observable<Result> getSearch(
             @Query("q") String query,
             @Query("begin_date") String b_date,
-            @Query("end_date") String e_date);
+            @Query("end_date") String e_date,
+            @Query("fq") String section);
 
     @Headers({
             "api_key: 514f85e678024ec3a52dd5cb986fdc63"

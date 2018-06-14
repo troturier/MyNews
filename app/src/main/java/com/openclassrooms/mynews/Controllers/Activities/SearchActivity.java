@@ -8,14 +8,17 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.openclassrooms.mynews.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Activity used for article search
@@ -29,6 +32,15 @@ public class SearchActivity extends AppCompatActivity {
     private String sDate = "";
     private String eDate = "";
     private Date date;
+    private TextInputEditText searchQuery;
+    private CheckBox cb_arts;
+    private CheckBox cb_politics;
+    private CheckBox cb_business;
+    private CheckBox cb_sports;
+    private CheckBox cb_entrepreneurs;
+    private CheckBox cb_travel;
+    private String section = "type_of_material:News";
+    private List<CheckBox> cb = new ArrayList<CheckBox>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,20 +155,56 @@ public class SearchActivity extends AppCompatActivity {
             endDate.setText(dayS + "/" + monthS + "/" + year);
         };
 
-        TextInputEditText searchQuery = findViewById(R.id.query_include);
+        searchQuery = findViewById(R.id.query_include);
         if (searchQuery == null){
             searchQuery = findViewById(R.id.search_query_term);
         }
+
 
         String inputPattern = "dd/MM/yyyy";
         String outputPattern = "yyyyMMdd";
         SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
         SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
 
-
         Button searchButton = findViewById(R.id.search_submit_button);
-        TextInputEditText finalSearchQuery = searchQuery;
         searchButton.setOnClickListener(view -> {
+            cb.clear();
+            section = "type_of_material:News";
+            eDate = "";
+            sDate = "";
+
+            cb_arts = findViewById(R.id.search_cb_arts);
+            cb_business = findViewById(R.id.search_cb_business);
+            cb_politics = findViewById(R.id.search_cb_politics);
+            cb_sports = findViewById(R.id.search_cb_sports);
+            cb_entrepreneurs = findViewById(R.id.search_cb_entrepreneurs);
+            cb_travel = findViewById(R.id.search_cb_travel);
+
+            cb.add(cb_arts);
+            cb.add(cb_business);
+            cb.add(cb_politics);
+            cb.add(cb_sports);
+            cb.add(cb_entrepreneurs);
+            cb.add(cb_travel);
+
+            int count = 0;
+
+            for(int i = 0; i < cb.size(); i++){
+                if(cb.get(i).isChecked()) {
+                    if(count == 0) {
+                        section = section + " AND section_name:(" + cb.get(i).getText().toString();
+                        count++;
+                    }
+                    else if(count > 0){
+                        section = section + " OR " + cb.get(i).getText().toString();
+                        count++;
+                    }
+                }
+            }
+
+            if(count > 0)
+                section = section + ")";
+
             try {
                 date = inputFormat.parse(startDate.getText().toString());
                 sDate = outputFormat.format(date);
@@ -170,10 +218,12 @@ public class SearchActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
             Intent intent = new Intent(view.getContext(), SearchResultActivity.class);
-            intent.putExtra("SearchQuery", finalSearchQuery.getText().toString());
+            intent.putExtra("SearchQuery", searchQuery.getText().toString());
             intent.putExtra("start_date", sDate);
             intent.putExtra("end_date", eDate);
+            intent.putExtra("section", section);
             view.getContext().startActivity(intent);
         });
 

@@ -59,7 +59,8 @@
 
     </LinearLayout>
 
-    <include layout="@layout/search_checkboxes" />
+    <include layout="@layout/search_checkboxes"
+            android:id="@+id/cb_include"/>
 
     <Button
         android:id="@+id/search_submit_button"

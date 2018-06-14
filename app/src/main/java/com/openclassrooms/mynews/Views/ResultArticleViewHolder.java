@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,6 +55,8 @@ public class ResultArticleViewHolder extends RecyclerView.ViewHolder{
         section = article.getSectionName();
         if (TextUtils.isEmpty(section)){
             section = article.getNewDesk();
+            if(section == null || section.equals("None"))
+                section = "News";
         }
         this.sectionTv.setText(section);
 

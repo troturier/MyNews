@@ -30,7 +30,7 @@ public class NyTimesStreams {
                 .timeout(10000, TimeUnit.SECONDS);
     }
 
-    public static Observable<Result> streamFetchSearch(String query, String start_date, String end_date){
+    public static Observable<Result> streamFetchSearch(String query, String start_date, String end_date, String section){
         NyTimesService nyTimesService = NyTimesService.retrofit.create(NyTimesService.class);
         if(query.isEmpty())
             query = null;
@@ -38,7 +38,7 @@ public class NyTimesStreams {
             start_date = null;
         if(end_date.isEmpty())
             end_date = null;
-        return nyTimesService.getSearch(query, start_date, end_date)
+        return nyTimesService.getSearch(query, start_date, end_date, section)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10000, TimeUnit.SECONDS);
