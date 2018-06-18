@@ -10,6 +10,9 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * WakefulBroadcastReceiver broadcast receiver
+ */
 public class NotificationEventReceiver extends WakefulBroadcastReceiver {
 
     private static final String ACTION_START_NOTIFICATION_SERVICE = "ACTION_START_NOTIFICATION_SERVICE";
