@@ -11,9 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.openclassrooms.mynews.Controllers.Fragments.MainFragment;
 import com.openclassrooms.mynews.Controllers.Fragments.SampleFragmentPagerAdapter;
@@ -84,7 +84,14 @@ public class MainActivity extends AppCompatActivity  {
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, section);
         mDrawerList.setAdapter(mAdapter);
 
-        mDrawerList.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(MainActivity.this, section[position]+" section selected", Toast.LENGTH_SHORT).show());
+        mDrawerList.setOnItemClickListener((parent, view, position, id) -> {
+            String sectionSelected = section[position];
+            Intent intent = new Intent(view.getContext(), SectionActivity.class);
+            intent.putExtra("section", sectionSelected);
+            view.getContext().startActivity(intent);
+        });
+
+
     }
 
     private void setupDrawer() {
@@ -177,7 +184,6 @@ public class MainActivity extends AppCompatActivity  {
      * Configure and show the MainFragment
      */
     private void configureAndShowMainFragment(){
-
         if (mainFragment == null) {
             mainFragment = new MainFragment();
             getSupportFragmentManager().beginTransaction()
