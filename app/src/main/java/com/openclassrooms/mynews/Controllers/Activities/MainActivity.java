@@ -18,7 +18,6 @@ import com.openclassrooms.mynews.R;
  */
 public class MainActivity extends AppCompatActivity  {
 
-    private final static String TAG = MainActivity.class.getSimpleName();
     private MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
     public static int tabPos = 0;
 

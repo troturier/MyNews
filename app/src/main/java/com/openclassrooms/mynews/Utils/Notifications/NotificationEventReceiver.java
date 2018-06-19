@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * WakefulBroadcastReceiver broadcast receiver
@@ -17,21 +18,21 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
 
     private static final String ACTION_START_NOTIFICATION_SERVICE = "ACTION_START_NOTIFICATION_SERVICE";
     private static final String ACTION_DELETE_NOTIFICATION = "ACTION_DELETE_NOTIFICATION";
-    private static final int NOTIFICATIONS_INTERVAL_IN_HOURS = 1;
+    private static final int NOTIFICATIONS_INTERVAL_IN_DAYS = 1;
 
     public static void setupAlarm(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent alarmIntent = getStartPendingIntent(context);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+        Objects.requireNonNull(alarmManager).setRepeating(AlarmManager.RTC_WAKEUP,
                 getTriggerAt(new Date()),
-                NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                NOTIFICATIONS_INTERVAL_IN_DAYS * AlarmManager.INTERVAL_DAY,
                 alarmIntent);
     }
 
     public static void deleteAlarm(Context context){
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent alarmIntent = getStartPendingIntent(context);
-        alarmManager.cancel(alarmIntent);
+        Objects.requireNonNull(alarmManager).cancel(alarmIntent);
     }
 
     @Override

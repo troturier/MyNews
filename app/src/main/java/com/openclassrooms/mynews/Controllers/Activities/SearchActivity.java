@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.openclassrooms.mynews.R;
+import com.openclassrooms.mynews.Utils.MyApplication;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Activity used for article search
@@ -40,14 +43,14 @@ public class SearchActivity extends AppCompatActivity {
     private CheckBox cb_entrepreneurs;
     private CheckBox cb_travel;
     private String section = "type_of_material:News";
-    private List<CheckBox> cb = new ArrayList<CheckBox>();
+    private final List<CheckBox> cb = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         // Setting up the return button and the activity title displayed in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(Objects.requireNonNull(getSupportActionBar())).setDisplayHomeAsUpEnabled(true);
 
         // Finding the two EditText responsible for managing dates in the search activity
         startDate = findViewById(R.id.search_begin_date);
@@ -71,7 +74,7 @@ public class SearchActivity extends AppCompatActivity {
                         month,
                         day);
                 // Set DatePickerDialog background transparent
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -90,7 +93,7 @@ public class SearchActivity extends AppCompatActivity {
                     year,
                     month,
                     day);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
 
@@ -108,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
                         year,
                         month,
                         day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
             });
@@ -126,7 +129,7 @@ public class SearchActivity extends AppCompatActivity {
                     year,
                     month,
                     day);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
             });
 
@@ -205,26 +208,34 @@ public class SearchActivity extends AppCompatActivity {
             if(count > 0)
                 section = section + ")";
 
-            try {
-                date = inputFormat.parse(startDate.getText().toString());
-                sDate = outputFormat.format(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if(count==0){
+                Toast.makeText(MyApplication.getAppContext(), "Please specify at least one category to search", Toast.LENGTH_LONG).show();
             }
-
-            try {
-                date = inputFormat.parse(endDate.getText().toString());
-                eDate = outputFormat.format(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
+            else if(searchQuery.getText().toString().isEmpty() || searchQuery.getText().toString().trim().length() == 0){
+                Toast.makeText(MyApplication.getAppContext(), "Please enter at least one term in the search bar", Toast.LENGTH_LONG).show();
             }
+            else {
+                try {
+                    date = inputFormat.parse(startDate.getText().toString());
+                    sDate = outputFormat.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-            Intent intent = new Intent(view.getContext(), SearchResultActivity.class);
-            intent.putExtra("SearchQuery", searchQuery.getText().toString());
-            intent.putExtra("start_date", sDate);
-            intent.putExtra("end_date", eDate);
-            intent.putExtra("section", section);
-            view.getContext().startActivity(intent);
+                try {
+                    date = inputFormat.parse(endDate.getText().toString());
+                    eDate = outputFormat.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(view.getContext(), SearchResultActivity.class);
+                intent.putExtra("SearchQuery", searchQuery.getText().toString());
+                intent.putExtra("start_date", sDate);
+                intent.putExtra("end_date", eDate);
+                intent.putExtra("section", section);
+                view.getContext().startActivity(intent);
+            }
         });
 
     }
