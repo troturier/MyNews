@@ -164,9 +164,6 @@ public class MainActivity extends AppCompatActivity  {
                 startActivity(intentNotifications);
                 return true;
 
-            case R.id.action_settings:
-                return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
