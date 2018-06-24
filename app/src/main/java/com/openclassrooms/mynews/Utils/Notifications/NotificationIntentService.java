@@ -43,6 +43,7 @@ public class NotificationIntentService extends IntentService {
     private Disposable disposable;
     private List<Article> articlesL;
     private SharedPreferences sharedPreferences;
+    private Intent intent;
 
     public NotificationIntentService() {
         super(NotificationIntentService.class.getSimpleName());
@@ -101,7 +102,7 @@ public class NotificationIntentService extends IntentService {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat formatR = new SimpleDateFormat("dd/MM/yyyy");
                 Date currentTime = Calendar.getInstance().getTime();
-                String dtCurrent = null;
+                String dtCurrent;
                 dtCurrent = formatR.format(currentTime);
 
                 List<String> sectionList = new ArrayList<>();
@@ -147,9 +148,12 @@ public class NotificationIntentService extends IntentService {
                                 NotificationManager.IMPORTANCE_DEFAULT);
                         mNotificationManager.createNotificationChannel(channel);
 
+                        intent = new Intent(getApplicationContext(), WebViewActivity.class);
+                        intent.putExtra("Url", articlesL.get(i).getUrl());
+
                         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
                                 NOTIFICATION_ID+i,
-                                new Intent(getApplicationContext(), WebViewActivity.class),
+                                intent,
                                 PendingIntent.FLAG_UPDATE_CURRENT);
                         builder.setContentIntent(pendingIntent);
                         builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(getApplicationContext()));
